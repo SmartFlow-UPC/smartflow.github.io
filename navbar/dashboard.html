@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monitor de Recursos</title>
+    <link rel="stylesheet" href="../css/dashboard-styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="flex-col min-h-screen">
+        <header class="px-4 lg:px-6 h-14 flex items-center">
+            <a href="../index.html" class="text-lg font-semibold text-primary hover:text-primary-dark transition-colors">
+                SmartFlow
+            </a>
+            <nav class="ml-auto flex gap-4 sm:gap-6">
+                <button class="ghost-button">Dashboard</button>
+                <button class="ghost-button">Dispositivos</button>
+                <button class="ghost-button">Informes</button>
+            </nav>
+        </header>
+        
+        <main class="flex-1 p-4 lg:p-6">
+            <div class="tabs space-y-4">
+                <div class="tabs-list">
+                    <button class="tab active" data-tab="overview">Resumen</button>
+                    <button class="tab" data-tab="consumption">Consumo</button>
+                    <button class="tab" data-tab="costs">Costos</button>
+                </div>
+                <div id="overview" class="tab-content active space-y-4">
+                    <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+                        <div class="card">
+                            <div class="card-header">
+                                <h2 class="card-title">Consumo Total</h2>
+                                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+                                </svg>
+                            </div>
+                            <div class="card-content">
+                                <div class="text-2xl font-bold">13,670 kWh</div>
+                                <p class="text-xs text-muted">+2% desde el último mes</p>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header">
+                                <h2 class="card-title">Costo Total</h2>
+                                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <line x1="12" y1="1" x2="12" y2="23"></line>
+                                    <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                                </svg>
+                            </div>
+                            <div class="card-content">
+                                <div class="text-2xl font-bold">$22,306</div>
+                                <p class="text-xs text-muted">-4% desde el último mes</p>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header">
+                                <h2 class="card-title">Eficiencia</h2>
+                                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <line x1="18" y1="20" x2="18" y2="10"></line>
+                                    <line x1="12" y1="20" x2="12" y2="4"></line>
+                                    <line x1="6" y1="20" x2="6" y2="14"></line>
+                                </svg>
+                            </div>
+                            <div class="card-content">
+                                <div class="text-2xl font-bold">86%</div>
+                                <p class="text-xs text-muted">+2% desde el último mes</p>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header">
+                                <h2 class="card-title">Alertas</h2>
+                                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <line x1="12" y1="8" x2="12" y2="12"></line>
+                                    <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                                </svg>
+                            </div>
+                            <div class="card-content">
+                                <div class="text-2xl font-bold">2</div>
+                                <p class="text-xs text-muted">-1 desde ayer</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="employee-filter">
+                        <label for="employee-select" class="block text-sm font-medium text-gray-700">Filtrar por empleado:</label>
+                        <select id="employee-select" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
+                            <option value="all">Todos los empleados</option>
+                            <option value="employee1">Empleado 1</option>
+                            <option value="employee2">Empleado 2</option>
+                            <option value="employee3">Empleado 3</option>
+                        </select>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">
+                            <h2 class="card-title">Consumo y Costo por Máquina</h2>
+                            <p class="card-description">Una visión general del consumo y costo de cada máquina</p>
+                        </div>
+                        <div class="card-content pl-2">
+                            <canvas id="machineChart" width="400" height="200"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <div id="consumption" class="tab-content space-y-4">
+                    <div class="card">
+                        <div class="card-header">
+                            <h2 class="card-title">Consumo Detallado</h2>
+                            <p class="card-description">Análisis detallado del consumo de recursos por máquina y tiempo</p>
+                        </div>
+                        <div class="card-content">
+                            <p>Aquí se mostraría un análisis más detallado del consumo de recursos.</p>
+                        </div>
+                    </div>
+                </div>
+                <div id="costs" class="tab-content space-y-4">
+                    <div class="card">
+                        <div class="card-header">
+                            <h2 class="card-title">Análisis de Costos</h2>
+                            <p class="card-description">Desglose detallado de los costos asociados al consumo de recursos</p>
+                        </div>
+                        <div class="card-content">
+                            <p>Aquí se mostraría un análisis detallado de los costos y tendencias.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <script src="../scripts/dashboard-scripts.js"></script>
+</body>
+</html>
