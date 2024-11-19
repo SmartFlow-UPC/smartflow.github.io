@@ -14,7 +14,66 @@
     --border: #e5e7eb;
     --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 }
+.video-section {
+    padding: 4rem 0;
+    background-color: #f8f9fa;
+}
 
+.container {
+    max-width: 1400px; /* Aumentado para permitir un video más grande */
+    margin: 0 auto;
+    padding: 0 2rem; /* Añadido espacio en los lados */
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 2.5rem;
+    color: #333;
+}
+
+.video-container {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%; /* Mantiene la relación de aspecto 16:9 */
+    height: 0;
+    overflow: hidden;
+    margin: 0 auto;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+/* Ajustes para pantallas más pequeñas */
+@media (max-width: 768px) {
+    .container {
+        padding: 0 1rem;
+    }
+
+    h2 {
+        font-size: 2rem;
+    }
+}
+
+/* Ajustes para pantallas más grandes */
+@media (min-width: 1200px) {
+    .container {
+        max-width: 1600px; /* Aún más grande para pantallas muy anchas */
+    }
+
+    .video-container {
+        width: 90%; /* El video ocupa el 90% del contenedor en pantallas grandes */
+        padding-bottom: 50.625%; /* Mantiene la relación de aspecto 16:9 para el 90% del ancho */
+    }
+}
 body {
     font-family: var(--font-sans);
     margin: 0;
